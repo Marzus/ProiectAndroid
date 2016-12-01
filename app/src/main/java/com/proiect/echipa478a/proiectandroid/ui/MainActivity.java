@@ -1,8 +1,7 @@
 package com.proiect.echipa478a.proiectandroid.ui;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
+import android.os.Bundle;
 
 import com.proiect.echipa478a.proiectandroid.R;
 
@@ -12,7 +11,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView test2 = (TextView) findViewById(R.id.testView);
-        test2.setText("Test Branch2");
     }
 }

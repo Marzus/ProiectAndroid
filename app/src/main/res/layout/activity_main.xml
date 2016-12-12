@@ -11,8 +11,17 @@
     tools:context="com.proiect.echipa478a.proiectandroid.ui.MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/bidItemsTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/testView" />
+        android:text="@string/bidding_items"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <ListView
+        android:id="@+id/itemsListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/bidItemsTitle" />
 </RelativeLayout>

@@ -3,13 +3,14 @@ package com.proiect.echipa478a.proiectandroid.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 
 import com.proiect.echipa478a.proiectandroid.R;
 import com.proiect.echipa478a.proiectandroid.custom.datapojo.BidItem;
 import com.proiect.echipa478a.proiectandroid.custom.datapojo.BidItemManager;
 
-public class BidItemActivity extends AppCompatActivity {
+public class BidItemActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView bidItemNameText;
 
@@ -29,5 +30,12 @@ public class BidItemActivity extends AppCompatActivity {
         bidItemNameText.setText(bidItem.getItemName());
 
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(this, FinishedBidActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

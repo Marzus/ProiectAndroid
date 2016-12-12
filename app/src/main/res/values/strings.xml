@@ -2,4 +2,7 @@
     <string name="app_name">ProiectAndroid</string>
     <string name="bidding_items">Bidding Items</string>
     <string name="item_name">Item Name</string>
+    <string name="return_to_items_list">Return To Items List</string>
+    <string name="thank_you_for_your_bidding">Thank You For Your Bidding</string>
+    <string name="finish_bid">Finish Bid</string>
 </resources>

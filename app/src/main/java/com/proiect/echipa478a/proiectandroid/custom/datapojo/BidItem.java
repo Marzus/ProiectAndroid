@@ -11,6 +11,7 @@ public class BidItem {
     private String itemName;
     private Double price;
     private Bitmap image;
+    private String description;
 
     public BidItem(int id, String itemName, Double price, Bitmap image) {
         this.id = id;
@@ -49,5 +50,13 @@ public class BidItem {
 
     public void setImage(Bitmap image) {
         this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

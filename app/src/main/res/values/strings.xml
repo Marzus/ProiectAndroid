@@ -5,4 +5,19 @@
     <string name="return_to_items_list">Return To Items List</string>
     <string name="thank_you_for_your_bidding">Thank You For Your Bidding</string>
     <string name="finish_bid">Finish Bid</string>
+    <string name="list_an_item">List An Item</string>
+    <string name="bid_on_items">Bid On Items</string>
+    <string name="welcome_to_our_bidding_application">Welcome to Our Bidding Application</string>
+    <string name="please_add_an_item">Please add an item</string>
+    <string name="add">Add</string>
+    <string name="image_optional">Image (optional):</string>
+    <string name="image_url">Image URL</string>
+    <string name="item_name_add">Item Name:</string>
+    <string name="item_price">Item Price</string>
+    <string name="name">Name</string>
+    <string name="price">Price:</string>
+    <string name="sync">Sync</string>
+    <string name="auto_sync_off">Auto Sync Off</string>
+    <string name="auto_sync_off_description">When auto sync is off you need to manually sync the records.</string>
+    <string name="auto_sync_on_description">When auto sync is on the app is going to sync the records for you.</string>
 </resources>

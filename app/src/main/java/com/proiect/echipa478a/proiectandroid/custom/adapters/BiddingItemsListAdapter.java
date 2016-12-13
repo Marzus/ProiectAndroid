@@ -44,10 +44,9 @@ public class BiddingItemsListAdapter<T> extends ArrayAdapter {
 
         //handle the item image
         ImageView imageView = (ImageView) rowView.findViewById(R.id.imageView);
-        /*TODO set the image when the BidItem supports them
-        * imageView.setImageBitmap(localBidItem.getImage());
-        *
-        **/
+        if(localBidItem.getImage() != null) {
+            imageView.setImageBitmap(localBidItem.getImage());
+        }
 
         //handle the item name
         TextView txtTitle = (TextView) rowView.findViewById(R.id.bidItem);
@@ -58,6 +57,12 @@ public class BiddingItemsListAdapter<T> extends ArrayAdapter {
         subItemTxt.setText("Price: " + formattedPrice);
         //handle the item buton
         Button bidButton = (Button) rowView.findViewById(R.id.bidBtn);
+
+        if(!localBidItem.isSynced()) {
+            txtTitle.setTextColor(context.getResources().getColor(R.color.notSynced));
+            subItemTxt.setTextColor(context.getResources().getColor(R.color.notSynced));
+        }
+
 
         bidButton.setOnClickListener(new View.OnClickListener() {
             @Override

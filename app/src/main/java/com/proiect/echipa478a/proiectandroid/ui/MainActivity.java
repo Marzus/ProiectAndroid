@@ -1,33 +1,60 @@
 package com.proiect.echipa478a.proiectandroid.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ListView;
+import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import com.proiect.echipa478a.proiectandroid.R;
-import com.proiect.echipa478a.proiectandroid.custom.adapters.BiddingItemsListAdapter;
-import com.proiect.echipa478a.proiectandroid.custom.datapojo.BidItem;
-import com.proiect.echipa478a.proiectandroid.custom.datapojo.BidItemManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ListView itemsListView;
+    private Switch syncSwitch;
+    private TextView syncInfoTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        syncInfoTextView = (TextView) findViewById(R.id.syncInfoTextView);
+        syncSwitch = (Switch) findViewById(R.id.syncSwitch);
+        syncSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b) {
+                    compoundButton.setText("Auto Sync On");
+                    syncInfoTextView.setText(R.string.auto_sync_on_description);
+                } else {
+                    compoundButton.setText("Auto Sync Off");
+                    syncInfoTextView.setText(R.string.auto_sync_off_description);
+                }
+            }
+        });
 
-        itemsListView = (ListView) findViewById(R.id.itemsListView);
+    }
 
-        // dummy items
-        for(int i = 1; i <= 10; i++) {
-            BidItemManager.addBidItem(new BidItem(i, "Item " + i, Math.random()*100, null));
+    @Override
+    public void onClick(View view) {
+        Intent intent;
+        switch (view.getId()) {
+            case R.id.bidOnItemsBtn:
+                intent = new Intent(this, BiddingListActivity.class);
+                Bundle extra = new Bundle();
+                if(syncSwitch.isChecked())
+                    extra.putBoolean("AutoSync", true);
+                else
+                    extra.putBoolean("AutoSync", false);
+                intent.putExtras(extra);
+                startActivity(intent);
+                break;
+            case R.id.listItemBtn:
+                intent = new Intent(this, ListItemsForBidding.class);
+                startActivity(intent);
+                break;
         }
-
-        BiddingItemsListAdapter<String> itemsArrayAdapter = new BiddingItemsListAdapter<>(this, BidItemManager.getBidItemsList());
-
-        itemsListView.setAdapter(itemsArrayAdapter);
     }
 }

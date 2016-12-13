@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.proiect.echipa478a.proiectandroid">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.BidItemActivity" />
-        <activity android:name=".ui.FinishedBidActivity"></activity>
+        <activity android:name=".ui.FinishedBidActivity" />
+        <activity android:name=".ui.BiddingListActivity" />
+        <activity android:name=".ui.ListItemsForBidding"></activity>
     </application>
 
 </manifest>

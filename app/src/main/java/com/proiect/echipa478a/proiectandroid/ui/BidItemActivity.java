@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.proiect.echipa478a.proiectandroid.R;
 import com.proiect.echipa478a.proiectandroid.custom.datapojo.BidItem;
@@ -24,10 +25,17 @@ public class BidItemActivity extends AppCompatActivity implements View.OnClickLi
         Intent intent = getIntent();
         Bundle extra = intent.getExtras();
         int bidItemID = extra.getInt("BidItemID");
+
+        //TODO handle when records are not synced
         BidItem bidItem = BidItemManager.getBidItemById(bidItemID);
 
-        bidItemNameText = (TextView) findViewById(R.id.bidItemName);
-        bidItemNameText.setText(bidItem.getItemName());
+        if(bidItem != null) {
+            bidItemNameText = (TextView) findViewById(R.id.bidItemName);
+            bidItemNameText.setText(bidItem.getItemName());
+        } else {
+            Toast.makeText(this, "This record is not synchronized.", Toast.LENGTH_LONG).show();
+            finish();
+        }
 
 
     }

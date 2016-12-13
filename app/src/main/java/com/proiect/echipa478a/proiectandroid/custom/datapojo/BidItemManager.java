@@ -55,6 +55,7 @@ public class BidItemManager {
         for(BidItem item : bidItemsList) {
             if(item.getId() > highestId || item.getId() == -1) {
                 itemDatabaseManager.insertRecord(item);
+                bidItemsList.remove(item);
             } else {
                 if(!item.synced) {
                     item.synced = true;
@@ -102,6 +103,14 @@ public class BidItemManager {
 
     public static List<BidItem> getLocalBidItems() {
         return localBidItems;
+    }
+
+
+    public static List<BidItem> getAllBidItemsList() {
+        List<BidItem> allItemsList = new ArrayList<>(_syncedBidItems.values());
+        allItemsList.addAll(localBidItems);
+
+        return allItemsList;
     }
 
     // TODO handles this methods to remove the record from DB too

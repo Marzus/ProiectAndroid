@@ -35,7 +35,7 @@ public class BiddingListActivity extends AppCompatActivity implements View.OnCli
             BidItemManager.synchronizeBidItemsRecords(this);
         }
 
-        BiddingItemsListAdapter<String> itemsArrayAdapter = new BiddingItemsListAdapter<>(this, BidItemManager.getBidItemsList());
+        BiddingItemsListAdapter<String> itemsArrayAdapter = new BiddingItemsListAdapter<>(this, BidItemManager.getAllBidItemsList());
 
         itemsListView.setAdapter(itemsArrayAdapter);
     }
@@ -43,5 +43,10 @@ public class BiddingListActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         BidItemManager.synchronizeBidItemsRecords(this);
+
+        BiddingItemsListAdapter<String> itemsArrayAdapter = new BiddingItemsListAdapter<>(this, BidItemManager.getAllBidItemsList());
+
+        itemsListView.setAdapter(itemsArrayAdapter);
+
     }
 }

@@ -43,7 +43,7 @@ public class BidItemManager {
     public static void synchronizeBidItemsRecords(Context context) {
         BiddingItemDatabaseManager itemDatabaseManager = new BiddingItemDatabaseManager(context);
         itemDatabaseManager.open();
-        List<BidItem> bidItemsList = getLocalBidItems();
+        List<BidItem> bidItemsList = new ArrayList<>(getAllBidItemsList());
 
         Cursor cursor = itemDatabaseManager.retrieveMaxRecordID();
         int highestId = -1;
@@ -55,7 +55,7 @@ public class BidItemManager {
         for(BidItem item : bidItemsList) {
             if(item.getId() > highestId || item.getId() == -1) {
                 itemDatabaseManager.insertRecord(item);
-                bidItemsList.remove(item);
+                getLocalBidItems().remove(item);
             } else {
                 if(!item.synced) {
                     item.synced = true;
@@ -107,8 +107,8 @@ public class BidItemManager {
 
 
     public static List<BidItem> getAllBidItemsList() {
-        List<BidItem> allItemsList = new ArrayList<>(_syncedBidItems.values());
-        allItemsList.addAll(localBidItems);
+        List<BidItem> allItemsList = new ArrayList<>(localBidItems);
+        allItemsList.addAll(_syncedBidItems.values());
 
         return allItemsList;
     }

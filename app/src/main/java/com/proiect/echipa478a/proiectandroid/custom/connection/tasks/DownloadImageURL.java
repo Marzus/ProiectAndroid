@@ -1,4 +1,4 @@
-package com.proiect.echipa478a.proiectandroid.custom.connection;
+package com.proiect.echipa478a.proiectandroid.custom.connection.tasks;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

@@ -20,4 +20,7 @@
     <string name="auto_sync_off">Auto Sync Off</string>
     <string name="auto_sync_off_description">When auto sync is off you need to manually sync the records.</string>
     <string name="auto_sync_on_description">When auto sync is on the app is going to sync the records for you.</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
 </resources>

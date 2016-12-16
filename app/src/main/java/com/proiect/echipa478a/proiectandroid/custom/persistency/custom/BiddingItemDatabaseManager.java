@@ -49,6 +49,19 @@ public class BiddingItemDatabaseManager extends DatabaseManager {
             contentValues.put(ItemsTable.IMAGE, stream.toByteArray());
         }
         contentValues.put(ItemsTable.DESCRIPTION, item.getDescription());
+        if(item.getSeller() != null) {
+            contentValues.put(ItemsTable.SELLER, item.getSeller().getUsername());
+        }
+        if(item.getItemLocation() != null) {
+            contentValues.put(ItemsTable.ITEM_LOCATION, item.getItemLocation().getCountry() + " - " + item.getItemLocation().getPostalCode());
+        }
+        if(item.getShippingOptions() != null && item.getShippingOptions().getShippingCost() != null
+                && item.getShippingOptions().getShippingCost().getValue() != null
+                && item.getShippingOptions().getShippingCost().getCurrency() != null) {
+            contentValues.put(ItemsTable.SHIPPING_COST, item.getShippingOptions().getShippingCost().getValue()
+                    + " - " + item.getShippingOptions().getShippingCost().getCurrency());
+        }
+
 
         super.insertRecords(ItemsTable.TABLE_NAME, contentValues);
     }
@@ -79,6 +92,10 @@ public class BiddingItemDatabaseManager extends DatabaseManager {
             contentValues.put(ItemsTable.IMAGE, stream.toByteArray());
         }
         contentValues.put(ItemsTable.DESCRIPTION, bidItem.getDescription());
+        contentValues.put(ItemsTable.SELLER, bidItem.getSeller().getUsername());
+        contentValues.put(ItemsTable.ITEM_LOCATION, bidItem.getItemLocation().getCountry() + " - " + bidItem.getItemLocation().getPostalCode());
+        contentValues.put(ItemsTable.SHIPPING_COST, bidItem.getShippingOptions().getShippingCost().getValue()
+                + " - " + bidItem.getShippingOptions().getShippingCost().getCurrency());
 
         super.updateRecords(ItemsTable.TABLE_NAME, contentValues, sqlWHERE, matchQuestionMarks);
 

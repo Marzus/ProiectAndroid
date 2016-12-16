@@ -8,9 +8,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.proiect.echipa478a.proiectandroid.R;
-import com.proiect.echipa478a.proiectandroid.custom.connection.DownloadImageURL;
+import com.proiect.echipa478a.proiectandroid.custom.connection.tasks.DownloadImageURL;
 import com.proiect.echipa478a.proiectandroid.custom.datapojo.BidItem;
 import com.proiect.echipa478a.proiectandroid.custom.datapojo.BidItemManager;
+import com.proiect.echipa478a.proiectandroid.custom.datapojo.User;
+import com.proiect.echipa478a.proiectandroid.custom.datapojo.pojoitem.Seller;
 
 public class ListItemsForBidding extends AppCompatActivity {
 
@@ -59,6 +61,12 @@ public class ListItemsForBidding extends AppCompatActivity {
 
                 BidItem bidItem = new BidItem(itemName, itemPrice, null);
 
+                if(User.getUserLogged() != null && !User.isGuestUser()) {
+                    Seller seller = new Seller();
+                    seller.setUsername(User.getUserLogged().getName());
+                    bidItem.setSeller(seller);
+                }
+
                 imageUrl = addImageTV.getText().toString().trim();
                 if(!imageUrl.isEmpty()) { //TODO check if the link is valid
                     DownloadImageURL downloadImageTask = new DownloadImageURL(ListItemsForBidding.this, bidItem);
@@ -66,7 +74,7 @@ public class ListItemsForBidding extends AppCompatActivity {
                     //downloadImageTask.execute("http://icons-search.com/img/icons-land/IconsLandVistaStyleEmoticonsDemo.zip/IconsLandVistaStyleEmoticonsDemo-PNG-256x256-Cool.png-256x256.png");
                 } else {
                     BidItemManager.addLocalBidItem(bidItem);
-                    Toast.makeText(ListItemsForBidding.this, bidItem.getItemName() + " added.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ListItemsForBidding.this, bidItem.getItemName() + " added.\n Navigate back and select bid on items to see your item.", Toast.LENGTH_SHORT).show();
                 }
 
 

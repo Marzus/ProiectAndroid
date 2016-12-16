@@ -5,6 +5,9 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.proiect.echipa478a.proiectandroid.custom.datapojo.pojoitem.ItemLocation;
+import com.proiect.echipa478a.proiectandroid.custom.datapojo.pojoitem.Seller;
+import com.proiect.echipa478a.proiectandroid.custom.datapojo.pojoitem.ShippingOptions;
 import com.proiect.echipa478a.proiectandroid.custom.persistency.custom.BiddingItemDatabaseManager;
 import com.proiect.echipa478a.proiectandroid.custom.persistency.tables.ItemsTable;
 
@@ -80,7 +83,22 @@ public class BidItemManager {
         double itemPrice = cursor.getDouble(cursor.getColumnIndex(ItemsTable.PRICE));
         byte[] byteArray = cursor.getBlob(cursor.getColumnIndex(ItemsTable.IMAGE));
 
+        String itemSeller = cursor.getString(cursor.getColumnIndex(ItemsTable.SELLER));
+        String itemLocation = cursor.getString(cursor.getColumnIndex(ItemsTable.ITEM_LOCATION));
+        String itemShippingCost = cursor.getString(cursor.getColumnIndex(ItemsTable.SHIPPING_COST));
+
         BidItem item = new BidItem(itemName, itemPrice, null);
+
+        Seller seller = new Seller();
+        seller.setUsername(itemSeller);
+        item.setSeller(seller);
+
+        ItemLocation itemLocationObject = new ItemLocation();
+        itemLocationObject.setCountry(itemLocation);
+        item.setItemLocation(itemLocationObject);
+
+        ShippingOptions shippingOptions = new ShippingOptions(itemShippingCost);
+        item.setShippingOptions(shippingOptions);
 
         if(byteArray != null) {
             Bitmap itemImage = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);

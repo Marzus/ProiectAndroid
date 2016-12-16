@@ -13,29 +13,28 @@
         android:layout_height="200px" />
 
     <TextView
+        android:id="@+id/bidItem"
+        android:layout_height="wrap_content"
+        android:text="ItemName"
+        android:textSize="16sp"
+        android:layout_width="363px"
+        android:layout_above="@+id/bidSubItem"
+        android:layout_toEndOf="@+id/imageView" />
+
+    <TextView
         android:id="@+id/bidSubItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Price"
         android:layout_alignBottom="@+id/imageView"
-        android:layout_alignStart="@+id/bidItem"
-        android:text="Price" />
+        android:layout_toEndOf="@+id/imageView" />
 
     <Button
         android:id="@+id/bidBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/bidItem"
-        android:text="Bid" />
-
-    <TextView
-        android:id="@+id/bidItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bidSubItem"
-        android:layout_marginStart="17dp"
-        android:layout_toEndOf="@+id/imageView"
-        android:text="ItemName"
-        android:textSize="20sp" />
+        android:text="Bid"
+        android:layout_alignBottom="@+id/bidItem"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

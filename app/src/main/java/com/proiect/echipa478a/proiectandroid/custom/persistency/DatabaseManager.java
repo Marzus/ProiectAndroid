@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.proiect.echipa478a.proiectandroid.custom.persistency.tables.ItemsTable;
+import com.proiect.echipa478a.proiectandroid.custom.persistency.tables.UsersTable;
 
 /**
  * Created by Marius on 12/12/2016.
@@ -47,19 +48,21 @@ public class DatabaseManager {
             }*/
             // register all tables here
             ItemsTable.onCreate(sqLiteDatabase);
+            UsersTable.onCreate(sqLiteDatabase);
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
             // register all tables here
             ItemsTable.onUpgrade(sqLiteDatabase, oldVersion, newVersion);
+            UsersTable.onUpgrade(sqLiteDatabase, oldVersion, newVersion);
         }
     }
 
     // handle data
 
-    protected void insertRecords(String TABLE_NAME, ContentValues contentValues) {
-        long id = sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
+    protected long insertRecords(String TABLE_NAME, ContentValues contentValues) {
+        return sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
     }
 
     protected Cursor retrieveRecords(String TABLE_NAME) {

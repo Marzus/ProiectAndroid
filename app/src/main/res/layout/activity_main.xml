@@ -61,4 +61,22 @@
         android:id="@+id/syncInfoTextView"
         android:textAlignment="center"
         android:textSize="18sp" />
+
+    <Button
+        android:text="Request Items From Ebay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ebayItemsBtn"
+        android:layout_below="@+id/bidOnItemsBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp" />
+
+    <Button
+        android:text="Register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/registerBtn"
+        android:layout_above="@+id/syncSwitch"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp" />
 </RelativeLayout>

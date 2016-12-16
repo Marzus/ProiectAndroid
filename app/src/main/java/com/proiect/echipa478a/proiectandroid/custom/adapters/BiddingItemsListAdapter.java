@@ -50,7 +50,8 @@ public class BiddingItemsListAdapter<T> extends ArrayAdapter {
 
         //handle the item name
         TextView txtTitle = (TextView) rowView.findViewById(R.id.bidItem);
-        txtTitle.setText(localBidItem.getItemName());
+        txtTitle.setText(localBidItem.getItemName().length() > 25 ?
+                localBidItem.getItemName().substring(0,25).concat("...") : localBidItem.getItemName());
         //handle the item price
         TextView subItemTxt = (TextView) rowView.findViewById(R.id.bidSubItem);
         String formattedPrice = new DecimalFormat("##.##").format(localBidItem.getPrice());

@@ -13,12 +13,19 @@ public class ItemsTable {
     public static final String PRICE = "price";
     public static final String DESCRIPTION = "description";
     public static final String IMAGE = "image";
+    public static final String SELLER = "seller";
+    public static final String SHIPPING_COST = "shipping";
+    public static final String ITEM_LOCATION = "item_location"; // postal_code + country
+
 
     private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_NAME + " TEXT, "
             + PRICE + " REAL, "
             + IMAGE + " BLOB, "
+            + SELLER + " TEXT, "
+            + SHIPPING_COST + " TEXT, "
+            + ITEM_LOCATION + " TEXT, "
             + DESCRIPTION + " TEXT);";
 
     public static void onCreate(SQLiteDatabase db) {

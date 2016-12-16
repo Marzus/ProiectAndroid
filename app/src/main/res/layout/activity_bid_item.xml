@@ -14,7 +14,6 @@
         android:text="@string/item_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bidItemName"
         android:layout_alignParentStart="true"
         android:id="@+id/bidItemName"
         android:textSize="20sp"

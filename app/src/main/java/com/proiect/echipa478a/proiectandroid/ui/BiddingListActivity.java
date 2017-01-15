@@ -55,6 +55,17 @@ public class BiddingListActivity extends AppCompatActivity implements View.OnCli
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(autoSync) {
+            BidItemManager.synchronizeBidItemsRecords(this);
+        }
+        BiddingItemsListAdapter<String> itemsArrayAdapter = new BiddingItemsListAdapter<>(this, BidItemManager.getAllBidItemsList());
+        itemsListView.setAdapter(itemsArrayAdapter);
+    }
+
+    @Override
     public void onClick(View view) {
         BidItemManager.synchronizeBidItemsRecords(this);
 

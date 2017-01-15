@@ -35,9 +35,11 @@ public class FinishedBidActivity extends AppCompatActivity {
 
         biddedItem = BidItemManager.getBidItemById(bidItemID);
 
-        signatureView.setImageBitmap(biddedItem.getOwnerSignature());
-        itemName.setText(biddedItem.getItemName());
-        itemPrice.setText(biddedItem.getPrice().toString());
+        if(biddedItem.getOwnerSignature() != null) {
+            signatureView.setImageBitmap(biddedItem.getOwnerSignature());
+        }
+        itemName.setText("Name: " + biddedItem.getItemName());
+        itemPrice.setText("Price: " + biddedItem.getPrice().toString());
 
         returnToMainBtn = (Button) findViewById(R.id.returnToMainBtn);
         returnToMainBtn.setOnClickListener(new View.OnClickListener() {

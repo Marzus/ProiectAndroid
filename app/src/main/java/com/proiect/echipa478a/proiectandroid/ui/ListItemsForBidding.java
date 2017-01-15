@@ -78,15 +78,16 @@ public class ListItemsForBidding extends AppCompatActivity {
 
                 }
 
-                Intent intenty = new Intent(ListItemsForBidding.this, SignatureActivity.class);
-                startActivity(intenty);
-
+                finish();
             }
         });
 
     }
 
-    public void onClickSignature(View view){
-
+    @Override
+    public void finish() {
+        super.finish();
+        Intent intenty = new Intent(ListItemsForBidding.this, SignatureActivity.class);
+        startActivity(intenty);
     }
 }

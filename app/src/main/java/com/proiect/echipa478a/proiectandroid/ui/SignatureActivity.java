@@ -21,20 +21,23 @@ import com.proiect.echipa478a.proiectandroid.custom.datapojo.BidItemManager;
 
 public class SignatureActivity extends AppCompatActivity {
 
-    private Paint mPaint;
-    private DrawingClass dc;
+    private Paint paintObj;
+    private DrawingClass drawObj;
     private Bitmap myBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dc = new DrawingClass(this);
-        setContentView(dc);
+        drawObj = new DrawingClass(this);
+
+        setContentView(drawObj);
+
         setTitle("Draw Signature");
-        mPaint = new Paint();
-        mPaint.setColor(Color.BLUE);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeWidth(12f);
+
+        paintObj = new Paint();
+        paintObj.setStrokeWidth(13f);
+        paintObj.setColor(Color.rgb(20,127,209));
+        paintObj.setStyle(Paint.Style.STROKE);
 
     }
 
@@ -50,11 +53,6 @@ public class SignatureActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.finish_signature:
                 Intent intenty = new Intent(SignatureActivity.this, MainActivity.class);
-                /*Bundle bundle = new Bundle();
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                myBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                bundle.putByteArray("ITEM_SIGNATURE", stream.toByteArray());
-                intenty.putExtras(bundle);*/
                 // put the signature on the item
                 BidItemManager.getLastBidItemAdded().setOwnerSignature(myBitmap);
                 startActivity(intenty);
@@ -93,7 +91,7 @@ public class SignatureActivity extends AppCompatActivity {
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             canvas.drawBitmap(myBitmap, 0, 0, mBitmapPaint);
-            canvas.drawPath(myPath, mPaint);
+            canvas.drawPath(myPath, paintObj);
             canvas.drawPath(circlePath, circlePaint);
         }
 
@@ -132,7 +130,7 @@ public class SignatureActivity extends AppCompatActivity {
         private void touchUp(float x, float y) {
             myPath.lineTo(mX, mY);
             circlePath.reset();
-            mCanvas.drawPath(myPath, mPaint);
+            mCanvas.drawPath(myPath, paintObj);
             myPath.reset();
         }
 

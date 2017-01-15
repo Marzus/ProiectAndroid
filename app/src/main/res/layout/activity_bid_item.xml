@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_bid_item"
     android:layout_width="match_parent"
@@ -21,11 +22,11 @@
 
     <ExpandableListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/expandableListView"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/finishBidBtn" />
+        android:layout_below="@+id/finishBidBtn"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/finishBidBtn"
@@ -35,4 +36,12 @@
         android:text="@string/finish_bid"
         android:layout_below="@+id/bidItemName"
         android:layout_alignParentEnd="true" />
+
+    <ImageView
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/itemImageView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_height="150px"
+        android:layout_width="150px" />
 </RelativeLayout>

@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,6 +14,7 @@ import com.proiect.echipa478a.proiectandroid.R;
 import com.proiect.echipa478a.proiectandroid.custom.adapters.ExpandableListAdapter;
 import com.proiect.echipa478a.proiectandroid.custom.datapojo.BidItem;
 import com.proiect.echipa478a.proiectandroid.custom.datapojo.BidItemManager;
+import com.proiect.echipa478a.proiectandroid.custom.datapojo.User;
 import com.proiect.echipa478a.proiectandroid.custom.datapojo.pojoitem.ItemLocation;
 import com.proiect.echipa478a.proiectandroid.custom.datapojo.pojoitem.Seller;
 import com.proiect.echipa478a.proiectandroid.custom.datapojo.pojoitem.ShippingOptions;
@@ -20,14 +23,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.proiect.echipa478a.proiectandroid.ui.LoginActivity.NO_USER_LOGGED;
+
 public class BidItemActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView bidItemNameText;
+    private ImageView itemIcon;
     private ExpandableListAdapter listAdapter;
     private ExpandableListView elView;
     private List<String> listDataHeader;
     private HashMap<String, List<String>> listDataChild;
     private int numberOfHeaders = 0;
+    private BidItem bidItem;
+    private Button bidButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +48,17 @@ public class BidItemActivity extends AppCompatActivity implements View.OnClickLi
         Bundle extra = intent.getExtras();
         int bidItemID = extra.getInt("BidItemID");
 
-        BidItem bidItem = BidItemManager.getBidItemById(bidItemID);
+        bidItem = BidItemManager.getBidItemById(bidItemID);
 
-        if(bidItem != null) {
+        if(bidItem != null && bidItem.isSynced()) {
             bidItemNameText = (TextView) findViewById(R.id.bidItemName);
             bidItemNameText.setText(bidItem.getItemName());
+            itemIcon = (ImageView) findViewById(R.id.itemImageView);
+            if(bidItem.getImage() != null) {
+                itemIcon.setImageBitmap(bidItem.getImage());
+            }
+            bidButton = (Button) findViewById(R.id.finishBidBtn);
+            bidButton.setText("Bid " + (bidItem.getPrice() + 10d));
 
             //handle expandable list
             elView = (ExpandableListView) findViewById(R.id.expandableListView);
@@ -134,8 +148,20 @@ public class BidItemActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(this, FinishedBidActivity.class);
-        startActivity(intent);
-        finish();
+        if(User.isGuestUser()) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setAction(NO_USER_LOGGED);
+            startActivity(intent);
+            Toast.makeText(this, "You must log in before starting to bid on items", Toast.LENGTH_LONG).show();
+        } else {
+            bidItem.setBidder(User.getUserLogged());
+            bidItem.setPrice(bidItem.getPrice() + 10d);
+            Intent intent = new Intent(this, FinishedBidActivity.class);
+            Bundle extra = new Bundle();
+            extra.putInt("ITEM_ID", bidItem.getId());
+            intent.putExtras(extra);
+            startActivity(intent);
+            finish();
+        }
     }
 }

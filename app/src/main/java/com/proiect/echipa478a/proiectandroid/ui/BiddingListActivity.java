@@ -10,9 +10,7 @@ import android.widget.Toast;
 
 import com.proiect.echipa478a.proiectandroid.R;
 import com.proiect.echipa478a.proiectandroid.custom.adapters.BiddingItemsListAdapter;
-import com.proiect.echipa478a.proiectandroid.custom.datapojo.BidItem;
 import com.proiect.echipa478a.proiectandroid.custom.datapojo.BidItemManager;
-import com.proiect.echipa478a.proiectandroid.custom.datapojo.pojoitem.Seller;
 
 public class BiddingListActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -40,7 +38,7 @@ public class BiddingListActivity extends AppCompatActivity implements View.OnCli
 
 
 
-        if(BidItemManager.getAllBidItemsList().size() <= 0) {
+        /*if(BidItemManager.getAllBidItemsList().size() <= 0) {
             Toast.makeText(BiddingListActivity.this, "No records. Add an item first", Toast.LENGTH_LONG).show();
             for(int i = 1; i <= 3; i++) {
                 BidItem dummyItem = new BidItem("Dummy Item " + i, Math.random() * 100, null);
@@ -49,10 +47,21 @@ public class BiddingListActivity extends AppCompatActivity implements View.OnCli
                 dummyItem.setSeller(seller);
                 BidItemManager.addLocalBidItem(dummyItem);
             }
-        }
+        }*/
 
         BiddingItemsListAdapter<String> itemsArrayAdapter = new BiddingItemsListAdapter<>(this, BidItemManager.getAllBidItemsList());
 
+        itemsListView.setAdapter(itemsArrayAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(autoSync) {
+            BidItemManager.synchronizeBidItemsRecords(this);
+        }
+        BiddingItemsListAdapter<String> itemsArrayAdapter = new BiddingItemsListAdapter<>(this, BidItemManager.getAllBidItemsList());
         itemsListView.setAdapter(itemsArrayAdapter);
     }
 

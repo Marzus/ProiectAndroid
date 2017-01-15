@@ -22,7 +22,8 @@
         <activity android:name=".ui.FinishedBidActivity" />
         <activity android:name=".ui.BiddingListActivity" />
         <activity android:name=".ui.ListItemsForBidding" />
-        <activity android:name=".ui.LoginActivity"></activity>
+        <activity android:name=".ui.LoginActivity" />
+        <activity android:name=".ui.SignatureActivity"></activity>
     </application>
 
 </manifest>

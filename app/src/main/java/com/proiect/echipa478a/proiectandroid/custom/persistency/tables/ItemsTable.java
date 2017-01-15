@@ -17,6 +17,11 @@ public class ItemsTable {
     public static final String SHIPPING_COST = "shipping";
     public static final String ITEM_LOCATION = "item_location"; // postal_code + country
 
+    //TODO Add more
+    public static final String BIDDER_NAME = "bidder_name";
+    public static final String BIDDER_ID = "bidder_id";
+    public static final String USERS_SIGNATURE = "user_signature";
+
 
     private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -26,7 +31,11 @@ public class ItemsTable {
             + SELLER + " TEXT, "
             + SHIPPING_COST + " TEXT, "
             + ITEM_LOCATION + " TEXT, "
-            + DESCRIPTION + " TEXT);";
+            + USERS_SIGNATURE + " BLOB, "
+            + BIDDER_NAME + " TEXT, "
+            + BIDDER_ID + " INTEGER, "
+            + DESCRIPTION + " TEXT, "
+            + "FOREIGN KEY(bidder_id) REFERENCES Users(_id) );";
 
     public static void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE);

@@ -23,6 +23,7 @@ import java.util.Map;
 public class BidItemManager {
     private static Map<Integer, BidItem> _syncedBidItems = new HashMap<>();
     private static List<BidItem> localBidItems = new ArrayList<>();
+    private static BidItem lastBidItemAdded = null;
 
     // methods private used only in this class for synchronization
     private static void addBidItem(BidItem bidItem) {
@@ -34,8 +35,13 @@ public class BidItemManager {
         }
     }
 
+    public static BidItem getLastBidItemAdded() {
+        return lastBidItemAdded;
+    }
+
     // public methods for handling purposes
     public static void addLocalBidItem(BidItem bidItem) {
+        lastBidItemAdded = bidItem;
         localBidItems.add(bidItem);
     }
     private static void addLocalBidItemList(List<BidItem> bidItemsList) {

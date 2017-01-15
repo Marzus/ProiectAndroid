@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public final String OAuthToken = "v^1.1#i^1#p^1#I^3#r^0#f^0#t^H4sIAAAAAAAAAOVXXWwUVRTuttvWQoFgiDaAukwJijiz87e7s5PukG0LoUB/YNvaYgiZnbmzHTo7M869Q7sJxrYgCcqPgiHhBSpBfZDIi0oMaiISH4gJiQhRgSjyoIgx2hgFxeid6VK21UCF1ZA4L5N7zrnnfuc759wfeqCi6tEty7b8Mi1QWTo8QA+UBgLMVLqqonzR9LLS2eUldIFBYHhg/kBwqOybOihnDVtcDaBtmRCE+rOGCUVfmCBcxxQtGepQNOUsgCJSxFSyeaXIUrRoOxayFMsgQk2NCSIWAwrDgxgXEdS4LPBYal732W4lCB5wQoynlRgbT3ORGMB6CF3QZEIkmyhBsDQTJRmWZCLtLCOyvMjHKU4Q1hChTuBA3TKxCUUTkg9X9Oc6BVhvDlWGEDgIOyGkpuTSVGuyqXFJS3tduMCXlOchhWTkwvGjBksFoU7ZcMHNl4G+tZhyFQVASISl0RXGOxWT18HcBnyfakUAfCzOpjWFowU+WhQml1pOVkY3h+FJdJXUfFMRmEhHuVsRislIrwcKyo9asIumxpD3W+XKhq7pwEkQS+qT3cm2NkJqlh3dhY0u2WHqGzywZKq+i+T4iCbIbFolIwzLxmlWyy806i3P8oSVGixT1T3OYKjFQvUAowYTuWEKuMFGrWark9SQh6jQjrvOIR9d4+V0NIku6jG9tIIsJiLkD2+dgbHZCDl62kVgzMNEhU9RgpBtW1eJiUq/FPPV0w8TRA9CthgO9/X1UX0cZTmZMEvTTLireWVK6QFZmfBsvV737fVbTyB1PxQFdym2F1HOxlj6caliAGaGkNgoz8ToPO/jYUkTpX8RFMQcHt8QxWoQTkkrcU6NAU3WhLQaKUaHSPkiDXs4QFrOkVnZ6QXINmQFkAquMzcLHF0VuYjGcoIGSDUa10g+rmlkOqLi9TQAaADSGJrwf2qUyZZ6g6FjZTsuteLUe7FqfZkFEVAnW+t/G1pKsWzQZhm6kvtvYvN6fbLxcY7aJjsoV+/m8DgFDAP/7ihcxc/kumJtXMVK5D/smduLXZfR3RU1wwuMwMVoIX5nceH7zF0Vl2JlKW8bphzZRpZDYWi2ASDlAGi5Dr5/Ua3eodxu9QITb3HIsQwDOJ3MHbEAvUa+u3joCQ4exS4g9iHb+iglmJuwJePoPdE6H3SoZxJG4bSbozIugAgDUYHzLxzw4fGvDanE/5ihwLv0UOBt/GChYzTJLKIXVpR1BMuqCagjgHNrqmmrn9JljYJ6xsSXaQdQvSBny7pTWhFovrit++mCd87wWrpm7KVTVcZMLXj20HNvaMqZGfdPY6IMy0RYhuX5+Bq69oY2yNwXnFW7mfjuyrzzI73bNh1E1eVz3ct9R+lpY0aBQHlJcChQsnqw4ar0R/TqnLoTD4HzK7pqTz6XuXdKaLh6UOfp16KD29/o3np2/+Izc1YY16QFP4Nv91GvZ36UOmdnnr3ny8PZujk1DT9tbvl89cZHHj644NgrSw7VXLuw/KXH35nHpL7fe+Tai2fpC78tvGx+1rFrxw/PGJVnqjqVZbsSGy52RGtffb53+p7dH2yuPzbbtSpHhtaeOxI/Xj5jcaB/+yc1u5dvHDi1dGvXnhd2Hgfdbd0zq/efnrv4ZenNj+z5s8JTVxnrHzg9M0OfW7fqyt4vAH/0wQMjJzc+duLKk0/s//VQc8id7n696fdLb1XMq32q6f0Z70kf128L7N2x6cDuKacqgx9eonaM2PsOf9r/1Wga/wRSHFsigQ4AAA==";
 
-    public final String API = "https://api.sandbox.ebay.com";
+    public final String API = "https://gist.githubusercontent.com";
 
     private Switch syncSwitch;
     private TextView syncInfoTextView;
@@ -79,7 +79,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 MainActivity.this.progressDialog.setMessage("Processing Request...");
                 MainActivity.this.progressDialog.show();
 
-                ebayItemService.getItemsByKeyWord(hardKeyWord, new Callback<EbayItemJson>() {
+
+                // new Callback<ItemSummaries>()
+                ebayItemService.getItemsByKeyWord(new Callback<EbayItemJson>() {
 
                     @Override
                     public void success(EbayItemJson ebayItemJson, Response response) {

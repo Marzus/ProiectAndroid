@@ -18,6 +18,8 @@ public class BidItem {
     private Seller seller;
     private ShippingOptions shippingOptions;
     private ItemLocation itemLocation;
+    private User bidder;
+    private Bitmap ownerSignature;
 
     // autoassign from db
     int id = -1;
@@ -120,5 +122,21 @@ public class BidItem {
     public void setItemLocation(ItemLocation itemLocation) {
         this.itemLocation = itemLocation;
         this.synced = false;
+    }
+
+    public User getBidder() {
+        return bidder;
+    }
+
+    public void setBidder(User bidder) {
+        this.bidder = bidder;
+    }
+
+    public Bitmap getOwnerSignature() {
+        return ownerSignature;
+    }
+
+    public void setOwnerSignature(Bitmap ownerSignature) {
+        this.ownerSignature = ownerSignature;
     }
 }

@@ -1,11 +1,11 @@
 package com.proiect.echipa478a.proiectandroid.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.proiect.echipa478a.proiectandroid.R;
 import com.proiect.echipa478a.proiectandroid.custom.connection.tasks.DownloadImageURL;
@@ -74,13 +74,19 @@ public class ListItemsForBidding extends AppCompatActivity {
                     //downloadImageTask.execute("http://icons-search.com/img/icons-land/IconsLandVistaStyleEmoticonsDemo.zip/IconsLandVistaStyleEmoticonsDemo-PNG-256x256-Cool.png-256x256.png");
                 } else {
                     BidItemManager.addLocalBidItem(bidItem);
-                    Toast.makeText(ListItemsForBidding.this, bidItem.getItemName() + " added.\n Navigate back and select bid on items to see your item.", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ListItemsForBidding.this, bidItem.getItemName() + " added.\n Navigate back and select bid on items to see your item.", Toast.LENGTH_SHORT).show();
+
                 }
 
-
+                Intent intenty = new Intent(ListItemsForBidding.this, SignatureActivity.class);
+                startActivity(intenty);
 
             }
         });
+
+    }
+
+    public void onClickSignature(View view){
 
     }
 }

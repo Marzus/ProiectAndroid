@@ -43,11 +43,24 @@ public class BiddingItemDatabaseManager extends DatabaseManager {
         ContentValues contentValues = new ContentValues();
         contentValues.put(ItemsTable.COLUMN_NAME, item.getItemName());
         contentValues.put(ItemsTable.PRICE, item.getPrice());
+
+        if(item.getBidder() != null) {
+            contentValues.put(ItemsTable.BIDDER_NAME, item.getBidder().getName());
+            contentValues.put(ItemsTable.BIDDER_ID, item.getBidder().getUserID());
+        }
+
         if(item.getImage() != null) {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             item.getImage().compress(Bitmap.CompressFormat.PNG, 100, stream);
             contentValues.put(ItemsTable.IMAGE, stream.toByteArray());
         }
+
+        if(item.getOwnerSignature() != null) {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            item.getOwnerSignature().compress(Bitmap.CompressFormat.PNG, 100, stream);
+            contentValues.put(ItemsTable.USERS_SIGNATURE, stream.toByteArray());
+        }
+
         contentValues.put(ItemsTable.DESCRIPTION, item.getDescription());
         if(item.getSeller() != null) {
             contentValues.put(ItemsTable.SELLER, item.getSeller().getUsername());
@@ -86,10 +99,22 @@ public class BiddingItemDatabaseManager extends DatabaseManager {
         ContentValues contentValues = new ContentValues();
         contentValues.put(ItemsTable.COLUMN_NAME, bidItem.getItemName());
         contentValues.put(ItemsTable.PRICE, bidItem.getPrice());
+
         if(bidItem.getImage() != null) {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bidItem.getImage().compress(Bitmap.CompressFormat.PNG, 100, stream);
             contentValues.put(ItemsTable.IMAGE, stream.toByteArray());
+        }
+
+        if(bidItem.getOwnerSignature() != null) {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bidItem.getOwnerSignature().compress(Bitmap.CompressFormat.PNG, 100, stream);
+            contentValues.put(ItemsTable.USERS_SIGNATURE, stream.toByteArray());
+        }
+
+        if(bidItem.getBidder() != null) {
+            contentValues.put(ItemsTable.BIDDER_NAME, bidItem.getBidder().getName());
+            contentValues.put(ItemsTable.BIDDER_ID, bidItem.getBidder().getUserID());
         }
         contentValues.put(ItemsTable.DESCRIPTION, bidItem.getDescription());
         contentValues.put(ItemsTable.SELLER, bidItem.getSeller().getUsername());
